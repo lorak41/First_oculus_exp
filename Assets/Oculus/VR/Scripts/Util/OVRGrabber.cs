@@ -47,6 +47,11 @@ public class OVRGrabber : MonoBehaviour
     [SerializeField]
     protected OVRInput.Controller m_controller;
 
+    public OVRInput.Controller GetController()
+    {
+        return m_controller;
+    }
+
     [SerializeField]
     protected Transform m_parentTransform;
 
@@ -276,6 +281,7 @@ public class OVRGrabber : MonoBehaviour
                 if(m_grabbedObj.snapOffset)
                 {
                     m_grabbedObjectRotOff = m_grabbedObj.snapOffset.rotation * m_grabbedObjectRotOff;
+                    if (m_controller == OVRInput.Controller.LTouch) m_grabbedObjectRotOff = Quaternion.Inverse(m_grabbedObjectRotOff);
                 }
             }
             else
